@@ -3,16 +3,16 @@ import Header from './Header';
 import { checkValidData } from '../utils/validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import { updateProfile } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVATAR } from '../utils/constants';
 
 const Login = () => {
     const [IsSignInForm, setIsSignInForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
     const [rememberMe, setRememberMe] = useState(false); // State to track "Remember me" checkbox
-    const navigate = useNavigate();
+ 
     const dispatch = useDispatch();
 
     
@@ -44,7 +44,7 @@ const Login = () => {
                     .then((userCredential) => {
                         const user = userCredential.user;
                         updateProfile(user, {
-                            displayName: username.current.value, photoURL: "https://files.hodoor.world/main/43728a8b-b4e8-4273-b706-2a61554ba39a.jpg",
+                            displayName: username.current.value, photoURL:USER_AVATAR,
                             
                           })
                             .then(() => {
@@ -57,9 +57,7 @@ const Login = () => {
                                         photoURL: photoURL,
                                     })
                                 );
-                                //console.log("User signed up:", user);
-                                navigate("/browse");
-                                
+                            
 
                             })
                             .catch((error) => {
@@ -76,8 +74,9 @@ const Login = () => {
                 signInWithEmailAndPassword(auth, emailValue, passwordValue)
                     .then((userCredential) => {
                         const user = userCredential.user;
-                        console.log("User signed in:", user);
-                        navigate("/browse")
+                        //console.log(user);
+              
+                       
                     })
                     .catch((error) => {
                         const errorCode = error.code;

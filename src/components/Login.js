@@ -74,7 +74,7 @@ const Login = () => {
                 signInWithEmailAndPassword(auth, emailValue, passwordValue)
                     .then((userCredential) => {
                         const user = userCredential.user;
-                        //console.log(user);
+                        
               
                        
                     })

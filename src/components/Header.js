@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import {onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase";
@@ -14,7 +14,7 @@ const Header = () => {
         signOut(auth).then(() => {
            
           }).catch((error) => {
-            navigate("/error")
+            navigate("/error");
           });
     };
     useEffect(() => {
@@ -44,7 +44,7 @@ const Header = () => {
             </div>
            { user && (<div className="flex p-2">
                 <img className="w-12 h-12" alt="usericon" src={user?.photoURL}/>
-                <buttom onClick={handleSignOut} className = "p-2 font-bold text-white cursor-pointer">Sign out</buttom>
+                <button onClick={handleSignOut} className = "p-2 font-bold text-white cursor-pointer">Sign out</button>
             </div>)}
 
         </div>

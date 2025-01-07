@@ -1,10 +1,11 @@
-import { IMG_CDN } from "../utils/constants";
+import { IMG_CDN_URL } from "../utils/constants";
 
 const MovieCard = ({posterPath}) => {
-    return <div>
-        <img alt="moiecard"
-        src={IMG_CDN +posterPath}/>
-    </div>
+    return(
+        <div className="w-36 pr-4">
+            <img alt="Movie card" src={IMG_CDN_URL + posterPath} />
+        </div>
+    );
 };
 
 export default MovieCard;

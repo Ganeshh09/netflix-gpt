@@ -1,19 +1,23 @@
-// import MovieCard from "./MovieCard";
+import MovieCard from "./MovieCard";
 
+const MovieList = ({ title, movies }) => {
+    // Check if movies exists and is not empty
+    if (!movies || movies.length === 0) {
+        return <div>No movies available</div>;
+    }
 
-// const MovieList = ({title,movies}) => {
-    
-//     return (
-//         <div>
-//             <div>
-//                 <h1>{title}</h1>
-//                 <div>
-//                     <MovieCard posterPath={movies[0].poster_path}/>
-//                 </div>
-//             </div>
-//         </div>
+    return (
+        <div className="px-6 ">
+            <h1 className="text-3xl py-4 text-white">{title}</h1>
+            <div className="flex overflow-scroll"> 
+                <div className="flex">
+                    {movies.map((movie) => (
+                        <MovieCard key={movie.id} posterPath={movie.poster_path} />
+                    ))}  
+                </div>
+            </div>
+        </div>
+    );
+};
 
-//     );
-// };
-
-// export default MovieList;
+export default MovieList;
